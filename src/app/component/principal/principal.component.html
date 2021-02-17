@@ -1,0 +1,19 @@
+<div class='principal'>
+    <h2>Películas recientes</h2>
+    <!--<div class="peliculas">
+        <img class='image' *ngFor="let pelicula of peliculasData" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ pelicula.poster_path }}" alt="">
+    </div>-->
+    <div class="peliculas">
+        <div class="titulos" *ngFor="let peliculas of peliculasData">
+            <b>{{peliculas.title}}</b>
+            <img class='image' src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ peliculas.poster_path }}">
+        </div>
+    </div>
+    <h2>Series recientes</h2>
+    <div class="series">
+        <div class="titulos2" *ngFor="let series of seriesData">
+            <b>{{series.name}}</b>
+            <img class='image' src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ series.poster_path }}">
+        </div>
+    </div>
+</div>
