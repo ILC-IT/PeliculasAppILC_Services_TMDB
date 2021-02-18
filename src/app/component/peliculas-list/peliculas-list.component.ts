@@ -24,10 +24,21 @@ export class PeliculasListComponent implements OnInit {
   }
 
   peliculasData: any;
-  peliculasDataOrdenado: any;
+  copia: any;
+
   constructor() { 
+    this.copia = JSON.parse(JSON.stringify(peliculas));
     this.peliculasData = peliculas;
-    this.peliculasDataOrdenado = this.sortJSON(this.peliculasData, 'title', 'asc');
+  }
+  
+  flag: boolean = false;
+  private ordenar(){
+    this.flag = !this.flag;
+    if (this.flag) {
+      this.peliculasData = this.sortJSON(this.copia, 'title', 'asc');
+    }else{
+      this.peliculasData = peliculas;
+    }
   }
 
   ngOnInit() {
