@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import peliculas from '../../../assets/movies.json';
+import{Router} from "@angular/router";
 
 @Component({
   selector: 'app-peliculas-list',
@@ -26,7 +27,7 @@ export class PeliculasListComponent implements OnInit {
   peliculasData: any;
   copia: any;
 
-  constructor() { 
+  constructor(private router: Router) { 
     this.copia = JSON.parse(JSON.stringify(peliculas));
     this.peliculasData = peliculas;
   }
@@ -42,6 +43,10 @@ export class PeliculasListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  sendParams(id, titulo){
+    this.router.navigate(['/pelicula'], {queryParams: {'id': id, 'titulo': titulo}});
   }
 
 }

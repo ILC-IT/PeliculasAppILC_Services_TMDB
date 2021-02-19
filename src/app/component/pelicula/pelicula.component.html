@@ -1,0 +1,18 @@
+<div class="body">
+    <div class="cabecera" [ngStyle]="{'background-image': 'url('+ urlFondo +')', 'background-size': 'cover'}">
+        <div class="caratula">
+            <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ pelicula[0].poster_path }}">
+        </div>
+        <div class="info">
+            <h2>{{ pelicula[0].title }} · {{ pelicula[0].release_date | date: "yyyy" }}</h2>
+            <p>Fecha: {{ pelicula[0].release_date | date: "dd/MM/yyyy" }}</p>
+            <p>{{ pelicula[0].overview }}</p>
+            <mat-chip-list>
+                Puntuación del público:
+                <mat-chip color="primary" selected>
+                    {{ pelicula[0].vote_average}}
+                </mat-chip>
+            </mat-chip-list> 
+        </div>
+    </div>
+</div>

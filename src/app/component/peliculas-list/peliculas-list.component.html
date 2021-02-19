@@ -11,7 +11,7 @@
         {{ pelicula.title }}
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary">+ info</button>
+      <button mat-raised-button color="primary" routerLink="/pelicula" (click)="sendParams(pelicula.id, pelicula.title)">+ info</button>
     </mat-card-actions>
   </mat-card>
 </div>

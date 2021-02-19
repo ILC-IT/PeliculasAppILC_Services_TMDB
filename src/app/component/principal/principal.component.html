@@ -3,11 +3,16 @@
     <!--<div class="peliculas">
         <img class='image' *ngFor="let pelicula of peliculasData" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ pelicula.poster_path }}" alt="">
     </div>-->
+    <mat-progress-bar mode="indeterminate" *ngIf="peliculasData.length === 0"></mat-progress-bar>
     <div class="peliculas">
-        <div class="titulos" *ngFor="let peliculas of peliculasData">
-            <b>{{peliculas.title}}</b>
-            <img class='image' src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ peliculas.poster_path }}">
-        </div>
+        <!-- <button *ngFor="let peliculas of peliculasData" (click)="sendParams(peliculas.id, peliculas.title)"> -->
+            <div class="titulos" *ngFor="let peliculas of peliculasData">
+                <b>{{peliculas.title}}</b>
+                <button (click)="sendParams(peliculas.id, peliculas.title)">
+                <img class='image' src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ peliculas.poster_path }}">
+                </button>
+            </div>
+        <!-- </button> -->
     </div>
     <h2>Series recientes</h2>
     <div class="series">

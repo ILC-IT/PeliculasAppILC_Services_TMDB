@@ -9,6 +9,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { PrincipalComponent } from './component/principal/principal.component';
 import { PeliculasListComponent } from './component/peliculas-list/peliculas-list.component';
 import { SeriesListComponent } from './component/series-list/series-list.component';
+import { PeliculaComponent } from './component/pelicula/pelicula.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SeriesListComponent } from './component/series-list/series-list.compone
     NavbarComponent,
     PrincipalComponent,
     PeliculasListComponent,
-    SeriesListComponent
+    SeriesListComponent,
+    PeliculaComponent
   ],
   imports: [
     BrowserModule,
