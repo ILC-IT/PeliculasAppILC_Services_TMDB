@@ -15,7 +15,7 @@ export class SeriesListComponent implements OnInit {
    }
 
   flag: boolean = false;
-  private ordenar(){
+  private ordenar_nombre(){
     this.flag = !this.flag;
     if (this.flag) {
       this.seriesData = this.seriesService.getSeriesPopularity_name('asc');
