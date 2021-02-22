@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import series from '../../../assets/series.json';
-import peliculas from '../../../assets/movies.json';
 import {ActivatedRoute, Router} from "@angular/router";
+import { PeliculasService } from "../../services/peliculas.service";
+import { SeriesService } from "../../services/series.service";
 
 @Component({
   selector: 'app-principal',
@@ -10,17 +10,22 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class PrincipalComponent implements OnInit {
 
-  public seriesData: any = series.slice(0, 5);
-  public peliculasData: any = peliculas.slice(0, 5);
+  seriesData: any;
+  peliculasData: any; //de manera predefinida es public
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private peliculasService: PeliculasService, private seriesService: SeriesService) { }
 
   ngOnInit() {
-    //console.log(this.seriesData);
+    this.peliculasData = this.peliculasService.getPopular();
+    this.seriesData = this.seriesService.getPopular();
   }
 
   sendParams(id, titulo){
     this.router.navigate(['/pelicula'], {queryParams: {'id': id, 'titulo': titulo}});
+  }
+
+  sendParams2(id, titulo){
+    this.router.navigate(['/serie'], {queryParams: {'id': id, 'titulo': titulo}});
   }
 
 }

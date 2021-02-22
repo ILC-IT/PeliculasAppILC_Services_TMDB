@@ -10,6 +10,9 @@ import { PrincipalComponent } from './component/principal/principal.component';
 import { PeliculasListComponent } from './component/peliculas-list/peliculas-list.component';
 import { SeriesListComponent } from './component/series-list/series-list.component';
 import { PeliculaComponent } from './component/pelicula/pelicula.component';
+import { PeliculasService } from "./services/peliculas.service";
+import { SeriesService } from "./services/series.service";
+import { SerieComponent } from './component/serie/serie.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { PeliculaComponent } from './component/pelicula/pelicula.component';
     PrincipalComponent,
     PeliculasListComponent,
     SeriesListComponent,
-    PeliculaComponent
+    PeliculaComponent,
+    SerieComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,10 @@ import { PeliculaComponent } from './component/pelicula/pelicula.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    PeliculasService,
+    SeriesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PeliculaComponent } from './component/pelicula/pelicula.component';
+import { SerieComponent } from './component/serie/serie.component';
 import { PeliculasListComponent } from './component/peliculas-list/peliculas-list.component';
 import { PrincipalComponent } from './component/principal/principal.component';
 import { SeriesListComponent } from './component/series-list/series-list.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path:'peliculasList', component: PeliculasListComponent},
   {path:'seriesList', component: SeriesListComponent},
   {path: 'pelicula', component: PeliculaComponent},
+  {path: 'serie', component: SerieComponent},
   {path:'**', pathMatch: 'full', redirectTo:''}
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import peliculas from '../../../assets/movies.json';
-import{Router} from "@angular/router";
+import { Router } from "@angular/router";
+import { PeliculasService } from "../../services/peliculas.service";
 
 @Component({
   selector: 'app-peliculas-list',
@@ -9,40 +9,33 @@ import{Router} from "@angular/router";
 })
 export class PeliculasListComponent implements OnInit {
 
-  private sortJSON(data, key, orden) {
-    return data.sort(function (a, b) {
-        var x = a[key],
-        y = b[key];
-
-        if (orden === 'asc') {
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        }
-
-        if (orden === 'desc') {
-            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-        }
-    });
-  }
-
   peliculasData: any;
-  copia: any;
 
-  constructor(private router: Router) { 
-    this.copia = JSON.parse(JSON.stringify(peliculas));
-    this.peliculasData = peliculas;
+  constructor(private router: Router, private peliculasService: PeliculasService) { 
   }
   
   flag: boolean = false;
-  private ordenar(){
+  private ordenar_nombre(){
     this.flag = !this.flag;
     if (this.flag) {
-      this.peliculasData = this.sortJSON(this.copia, 'title', 'asc');
+      this.peliculasData = this.peliculasService.getMoviesPopularity_title('asc');
     }else{
-      this.peliculasData = peliculas;
+      this.peliculasData = this.peliculasService.peliculasTotal;
+    }
+  }
+
+  flag_votos: boolean = false;
+  private ordenar_votos(){
+    this.flag_votos = !this.flag_votos;
+    if (this.flag_votos) {
+      this.peliculasData = this.peliculasService.getMoviesPopularity();
+    }else{
+      this.peliculasData = this.peliculasService.peliculasTotal;
     }
   }
 
   ngOnInit() {
+    this.peliculasData = this.peliculasService.peliculasTotal;
   }
 
   sendParams(id, titulo){

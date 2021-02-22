@@ -1,0 +1,18 @@
+<div class="body">
+    <div class="cabecera" [ngStyle]="{'background-image': 'url('+ urlFondo +')', 'background-size': 'cover'}">
+        <div class="caratula">
+            <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ serie[0].poster_path }}">
+        </div>
+        <div class="info">
+            <h2>{{ serie[0].name }} · {{ serie[0].first_air_date | date: "yyyy" }}</h2>
+            <p>Fecha: {{ serie[0].first_air_date | date: "dd/MM/yyyy" }}</p>
+            <p>{{ serie[0].overview }}</p>
+            <mat-chip-list>
+                Puntuación del público:
+                <mat-chip color="primary" selected>
+                    {{ serie[0].vote_average}}
+                </mat-chip>
+            </mat-chip-list> 
+        </div>
+    </div>
+</div>

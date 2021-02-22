@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import series from '../../../assets/series.json';
+import { Router } from "@angular/router";
+import { SeriesService } from "../../services/series.service";
 
 @Component({
   selector: 'app-series-list',
@@ -8,40 +9,37 @@ import series from '../../../assets/series.json';
 })
 export class SeriesListComponent implements OnInit {
 
-  private sortJSON(data, key, orden) {
-    return data.sort(function (a, b) {
-        var x = a[key],
-        y = b[key];
-
-        if (orden === 'asc') {
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        }
-
-        if (orden === 'desc') {
-            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-        }
-    });
-  }
-
   seriesData: any;
-  copia: any;
 
-  constructor() {
-    this.copia = JSON.parse(JSON.stringify(series));
-    this.seriesData = series;
+  constructor(private router: Router, private seriesService: SeriesService) {
    }
 
   flag: boolean = false;
   private ordenar(){
     this.flag = !this.flag;
     if (this.flag) {
-      this.seriesData = this.sortJSON(this.copia, 'name', 'asc');
+      this.seriesData = this.seriesService.getSeriesPopularity_name('asc');
     }else{
-      this.seriesData = series;
+      this.seriesData = this.seriesService.seriesTotal;;
+    } 
+  }
+
+  flag_votos: boolean = false;
+  private ordenar_votos(){
+    this.flag_votos = !this.flag_votos;
+    if (this.flag_votos) {
+      this.seriesData = this.seriesService.getSeriesPopularity();
+    }else{
+      this.seriesData = this.seriesService.seriesTotal;
     }
   }
 
   ngOnInit() {
+    this.seriesData = this.seriesService.seriesTotal;
+  }
+
+  sendParams(id, titulo){
+    this.router.navigate(['/serie'], {queryParams: {'id': id, 'titulo': titulo}});
   }
 
 }
