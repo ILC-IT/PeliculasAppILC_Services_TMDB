@@ -10,15 +10,17 @@ import { PeliculasService } from "../../services/peliculas.service";
 export class PeliculasListComponent implements OnInit {
 
   peliculasData: any;
+  votos: boolean = false;
 
   constructor(private router: Router, private peliculasService: PeliculasService) { 
   }
   
   flag: boolean = false;
-  private ordenar_nombre(){
+  private ordenar_nombre(modo: string){
+    this.votos = false;
     this.flag = !this.flag;
     if (this.flag) {
-      this.peliculasData = this.peliculasService.getMoviesPopularity_title('asc');
+      this.peliculasData = this.peliculasService.getMoviesPopularity_title(modo);
     }else{
       this.peliculasData = this.peliculasService.peliculasTotal;
     }
@@ -26,6 +28,7 @@ export class PeliculasListComponent implements OnInit {
 
   flag_votos: boolean = false;
   private ordenar_votos(){
+    this.votos = true;
     this.flag_votos = !this.flag_votos;
     if (this.flag_votos) {
       this.peliculasData = this.peliculasService.getMoviesPopularity();
