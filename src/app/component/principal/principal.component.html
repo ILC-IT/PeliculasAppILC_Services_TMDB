@@ -1,10 +1,10 @@
 <div class='principal'>
     <h2>Películas recientes</h2>
-    <mat-progress-bar mode="indeterminate" *ngIf="peliculasData.length === 0"></mat-progress-bar>
-    <div class="peliculas">
+    <mat-progress-bar mode="indeterminate" *ngIf="!peliculasData"></mat-progress-bar>
+    <div class="peliculas" *ngIf="peliculasData">
             <div class="titulos" *ngFor="let peliculas of peliculasData">
                 <b>{{peliculas.title}}</b>
-                <button (click)="sendParams(peliculas.id, peliculas.title)">
+                <button mat-button (click)="sendParams(peliculas.id, peliculas.title)">
                     <img class='image' src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ peliculas.poster_path }}">
                 </button>
             </div>

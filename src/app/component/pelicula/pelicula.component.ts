@@ -12,16 +12,27 @@ export class PeliculaComponent implements OnInit {
   titulo: string = '';
   pelicula: any = {};
   urlFondo: string = '';
+  credits: any = {};
+
   constructor(private route: ActivatedRoute, private router: Router, private peliculasService: PeliculasService) { }
 
   ngOnInit() {
     // this.route.snapshot.paramMap.get('id');
     // this.route.snapshot.paramMap.get('title');
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params: any) => {
       this.idPelicula = params.id;
       this.titulo = params.titulo;
-      this.pelicula = this.peliculasService.getPelicula(this.idPelicula);
-    });
-    this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.pelicula[0].backdrop_path;
+      this.peliculasService.getPelicula(this.idPelicula).subscribe((data: any) =>{
+        console.log(data);
+        this.pelicula = data;
+        this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.pelicula.backdrop_path;
+      }), (error: any) =>{
+        console.log(error);
+      }
+      this.peliculasService.getCredits(this.idPelicula).subscribe((data: any) =>{
+        console.log(data); //se puede quitar el pipe del service y hacer data.cast
+        this.credits = data;
+      })
+    }); 
   }
 }

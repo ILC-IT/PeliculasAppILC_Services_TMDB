@@ -16,7 +16,10 @@ export class PrincipalComponent implements OnInit {
   constructor(private router: Router, private peliculasService: PeliculasService, private seriesService: SeriesService) { }
 
   ngOnInit() {
-    this.peliculasData = this.peliculasService.getPopular();
+    this.peliculasService.getPopular().subscribe((data: any) =>{ //podemos definir una clase pelicula y poner data: pelicula
+      this.peliculasData = data;
+      console.log(data);
+    });
     this.seriesData = this.seriesService.getPopular();
   }
 

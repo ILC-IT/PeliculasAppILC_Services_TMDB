@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import peliculas from '../../assets/movies.json';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from "../../environments/environment";
+import { map } from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
 export class PeliculasService {
 
   peliculasTotal = peliculas;
-  constructor() { }
+  apiUrl = "https://api.themoviedb.org/3/movie/";
+  language = 'es-ES';
+
+  constructor(private httpClient: HttpClient) { }
 
   getPopular(){
-    return peliculas.slice(0, 5);
+    //return peliculas.slice(0, 5);
+    const url = `${this.apiUrl}popular?${environment.apiKey}&language=${this.language}`;
+    return this.httpClient.get(url).pipe(map((data:any) =>{
+      return data.results.slice(0, 5);
+    })); 
   }
 
   private sortJSON(data, key, orden) {
@@ -41,11 +50,21 @@ export class PeliculasService {
   }
 
   getPelicula(id){
-    return this.peliculasTotal.filter((res) =>{
-      let idPelNum = +id;
-      if (res.id === idPelNum){
-        return res;
-      }
-    });
+    const url = `${this.apiUrl}${id}?${environment.apiKey}&language=${this.language}`;
+    return this.httpClient.get(url);
+  }
+
+  getTopRated(){
+    const url = `${this.apiUrl}top_rated?${environment.apiKey}&language=${this.language}`;
+    return this.httpClient.get(url).pipe(map((data:any) =>{
+      return data.results;
+    }));
+  }
+
+  getCredits(id){
+    const url = `${this.apiUrl}${id}/credits?${environment.apiKey}&language=${this.language}`;
+    return this.httpClient.get(url).pipe(map((data:any) =>{
+      return data.cast; //asi devolvemos la parte cast de data
+    }));
   }
 }

@@ -13,6 +13,8 @@ import { PeliculaComponent } from './component/pelicula/pelicula.component';
 import { PeliculasService } from "./services/peliculas.service";
 import { SeriesService } from "./services/series.service";
 import { SerieComponent } from './component/serie/serie.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PuntuacionComponent } from './component/puntuacion/puntuacion.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { SerieComponent } from './component/serie/serie.component';
     PeliculasListComponent,
     SeriesListComponent,
     PeliculaComponent,
-    SerieComponent
+    SerieComponent,
+    PuntuacionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [
     PeliculasService,

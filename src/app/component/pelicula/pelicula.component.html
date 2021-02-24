@@ -1,20 +1,42 @@
 <div class="body">
     <div class="cabecera" [ngStyle]="{'background-image': 'url('+ urlFondo +')', 'background-size': 'cover'}">
         <div class="caratula">
-            <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ pelicula[0].poster_path }}">
+            <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ pelicula.poster_path }}">
         </div>
         <div class="info">
-            <h2>{{ pelicula[0].title }} · {{ pelicula[0].release_date | date: "yyyy" }}</h2>
-            <p>Fecha: {{ pelicula[0].release_date | date: "dd/MM/yyyy" }}</p>
-            <p>{{ pelicula[0].overview }}</p>
+            <h2>{{ pelicula.title }} · {{ pelicula.release_date | date: "yyyy" }}</h2>
+            <p>Fecha: {{ pelicula.release_date | date: "dd/MM/yyyy" }}</p>
+            <p>{{ pelicula.overview }}</p>
             <mat-chip-list>
                 Puntuación del público:
                 <mat-chip color="primary" selected>
-                    {{ pelicula[0].vote_average}}
+                    {{ pelicula.vote_average }}
                 </mat-chip>
             </mat-chip-list> 
+            <app-puntuacion [puntuacion]="pelicula.vote_average"></app-puntuacion>
+            <mat-chip-list>
+                Generos:
+                <mat-chip *ngFor="let genero of pelicula.genres">
+                    {{ genero.name }}
+
+                </mat-chip>
+            </mat-chip-list>
         </div>
         <div class="degradado">
         </div>
+    </div>
+    <div class="credits">
+        <mat-card class="example-card" *ngFor="let actor of credits">
+        <img mat-card-image *ngIf="actor.profile_path" src="https://www.themoviedb.org/t/p/w138_and_h175_face/{{ actor.profile_path }}">
+        <img mat-card-image *ngIf="!actor.profile_path" src="../../../assets/images/avatar_vacio.png">
+        <mat-card-content>
+            <p>
+                {{ actor.name }}
+            </p>
+            <p>
+                {{ actor.character }}
+            </p>
+        </mat-card-content>
+        </mat-card>
     </div>
 </div>
