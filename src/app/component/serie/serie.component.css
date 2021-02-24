@@ -11,13 +11,25 @@
 
 .caratula {
     margin-top: 20px;
-    margin-left: 40px;
+    margin-left: 15vwpx;
+    z-index: 2;
 }
 
 .info {
     margin-left: 10px;
+    margin-right: 15vw;
+    z-index: 2;
 }
 
 .imgCaratula {
     border-radius: 10px;
+}
+
+.degradado {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background-color:white;
+    z-index: 1;
 }
