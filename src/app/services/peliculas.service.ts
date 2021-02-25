@@ -15,7 +15,6 @@ export class PeliculasService {
   constructor(private httpClient: HttpClient) { }
 
   getPopular(){
-    //return peliculas.slice(0, 5);
     const url = `${this.apiUrl}popular?${environment.apiKey}&language=${this.language}`;
     return this.httpClient.get(url).pipe(map((data:any) =>{
       return data.results.slice(0, 5);

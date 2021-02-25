@@ -20,7 +20,11 @@ export class PrincipalComponent implements OnInit {
       this.peliculasData = data;
       console.log(data);
     });
-    this.seriesData = this.seriesService.getPopular();
+
+    this.seriesService.getPopular().subscribe((data: any) =>{ //podemos definir una clase serie y poner data: serie
+      this.seriesData = data;
+      console.log(data);
+    });
   }
 
   sendParams(id, titulo){

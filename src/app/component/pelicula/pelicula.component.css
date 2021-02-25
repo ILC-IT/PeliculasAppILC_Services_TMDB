@@ -38,7 +38,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    overflow: auto;
+    flex-wrap: wrap;
     margin: 20px;
     z-index: 2;
 }

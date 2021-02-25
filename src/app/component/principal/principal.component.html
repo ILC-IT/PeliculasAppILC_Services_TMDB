@@ -11,11 +11,11 @@
         <!-- </button> -->
     </div>
     <h2>Series recientes</h2>
-    <mat-progress-bar mode="indeterminate" *ngIf="seriesData.length === 0"></mat-progress-bar>
-    <div class="series">
+    <mat-progress-bar mode="indeterminate" *ngIf="!seriesData"></mat-progress-bar>
+    <div class="series" *ngIf="seriesData">
         <div class="titulos2" *ngFor="let series of seriesData">
             <b>{{series.name}}</b>
-            <button (click)="sendParams2(series.id, series.name)">
+            <button mat-button (click)="sendParams2(series.id, series.name)">
                 <img class='image' src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ series.poster_path }}">
             </button>
         </div>

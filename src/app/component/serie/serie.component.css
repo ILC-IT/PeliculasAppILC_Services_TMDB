@@ -33,3 +33,20 @@
     background-color:white;
     z-index: 1;
 }
+
+.credits {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+    z-index: 2;
+}
+
+mat-card {
+    margin: 2px;
+}
+
+mat-card-content {
+    max-width: 100px;
+}

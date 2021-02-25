@@ -1,7 +1,8 @@
-<div class="ord">
+<!--<div class="ord">
+  Ordenar:
   <button mat-raised-button color="primary" (click)="ordenar_nombre()">Ordenar alfabeticamente A-Z</button>
   <button mat-raised-button color="primary" (click)="ordenar_votos()">Ordenar por votos</button>
-</div>
+</div>-->
 <div class="content">
   <mat-card class="example-card" *ngFor="let serie of seriesData">
     <mat-card-header>
@@ -9,6 +10,9 @@
     <img mat-card-image src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ serie.poster_path }}">
     <mat-card-content>
         {{ serie.name }}
+        <div class="votos" *ngIf=votos> 
+          {{ serie.vote_average }}
+        </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" routerLink="/serie" (click)="sendParams(serie.id, serie.name)">+ info</button>

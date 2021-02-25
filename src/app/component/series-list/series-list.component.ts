@@ -35,7 +35,12 @@ export class SeriesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seriesData = this.seriesService.seriesTotal;
+    this.seriesService.getTopRated().subscribe((data: any)=> {
+      this.seriesData = data;
+      //console.log(data)
+    }), (error: any) =>{
+      console.log(error);
+    };
   }
 
   sendParams(id, titulo){

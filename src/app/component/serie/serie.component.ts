@@ -12,16 +12,27 @@ export class SerieComponent implements OnInit {
   titulo: string = '';
   serie: any = {};
   urlFondo: string = '';
+  credits: any = {};
+
   constructor(private route: ActivatedRoute, private router: Router, private seriesService: SeriesService) { }
 
   ngOnInit() {
     // this.route.snapshot.paramMap.get('id');
     // this.route.snapshot.paramMap.get('name');
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params: any) => {
       this.idSerie = params.id;
       this.titulo = params.name;
-      this.serie = this.seriesService.getSerie(this.idSerie);
+      this.seriesService.getSerie(this.idSerie).subscribe((data: any)=>{
+        console.log(data);
+        this.serie = data;
+        this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.serie.backdrop_path;
+      }), (error: any) =>{
+        console.log(error);
+      }
+      this.seriesService.getCredits(this.idSerie).subscribe((data: any) =>{
+        console.log(data); //se puede quitar el pipe del service y hacer data.cast
+        this.credits = data;
+      })
     });
-    this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.serie[0].backdrop_path;
   }
 }
