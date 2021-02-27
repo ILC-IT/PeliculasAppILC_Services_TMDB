@@ -1,5 +1,6 @@
 <div class="body">
     <div class="cabecera" [ngStyle]="{'background-image': 'url('+ urlFondo +')', 'background-size': 'cover'}">
+        
         <div class="caratula">
             <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ serie.poster_path }}">
         </div>
@@ -24,6 +25,7 @@
         </div>
         <div class="degradado">
         </div>
+
     </div>
     <div class="credits">
         <mat-card class="example-card" *ngFor="let actor of credits">
@@ -39,4 +41,27 @@
         </mat-card-content>
         </mat-card>
     </div>
+    <div class="ult_temp">
+        <h3 style="margin-left:20px;">Última temporada</h3>
+        <div class="cabecera2" [ngStyle]="{}">
+            <div class="caratula">
+                <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ temporadaData.poster_path }}">
+            </div>
+            <div class="info">
+                <h2>{{ temporadaData.name }} · {{ temporadaData.air_date | date: "yyyy" }}</h2>
+                <p>Fecha: {{ temporadaData.air_date | date: "dd/MM/yyyy" }}</p>
+                <b>Episodios:</b>
+                <div class="episodios">
+                    <mat-chip-list *ngFor="let episodio of temporadaData.episodes">
+                        <h4>{{ episodio.name }} · </h4>  {{episodio.air_date | date: "dd/MM/yyyy"}} <h4> · Puntuación del público: </h4>
+                        <mat-chip color="primary" selected>
+                            {{ episodio.vote_average }}
+                        </mat-chip>
+                        {{ episodio.overview }}
+                    </mat-chip-list>
+                </div> 
+            </div>
+        </div>
+    </div>
+
 </div>

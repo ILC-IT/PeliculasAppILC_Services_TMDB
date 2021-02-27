@@ -13,6 +13,8 @@ export class SerieComponent implements OnInit {
   serie: any = {};
   urlFondo: string = '';
   credits: any = {};
+  ult_temp: string = '';
+  temporadaData: any = {};
 
   constructor(private route: ActivatedRoute, private router: Router, private seriesService: SeriesService) { }
 
@@ -23,16 +25,26 @@ export class SerieComponent implements OnInit {
       this.idSerie = params.id;
       this.titulo = params.name;
       this.seriesService.getSerie(this.idSerie).subscribe((data: any)=>{
-        console.log(data);
+        //console.log(data);
         this.serie = data;
         this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.serie.backdrop_path;
+        this.ult_temp = data.number_of_seasons;
+        //console.log("temporada getserie " + this.ult_temp)
+        this.seriesService.getTemporada(this.idSerie, this.ult_temp).subscribe((data: any) =>{
+          //console.log(data);
+          //console.log("temporada gettemporada " + this.ult_temp)
+          this.temporadaData = data;
+        })
       }), (error: any) =>{
         console.log(error);
       }
       this.seriesService.getCredits(this.idSerie).subscribe((data: any) =>{
-        console.log(data); //se puede quitar el pipe del service y hacer data.cast
+        //console.log(data); //se puede quitar el pipe del service y hacer data.cast
+        //console.log("temporada getcredits " + this.ult_temp)
         this.credits = data;
       })
+
     });
+    
   }
 }

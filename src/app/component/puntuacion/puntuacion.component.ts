@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PuntuacionComponent implements OnInit {
   @Input() puntuacion: number;
   constructor() { 
-    console.log(this.puntuacion);
+    //console.log(this.puntuacion);
   }
 
   ngOnInit() {

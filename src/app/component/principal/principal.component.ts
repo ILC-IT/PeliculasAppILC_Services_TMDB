@@ -18,12 +18,15 @@ export class PrincipalComponent implements OnInit {
   ngOnInit() {
     this.peliculasService.getPopular().subscribe((data: any) =>{ //podemos definir una clase pelicula y poner data: pelicula
       this.peliculasData = data;
-      console.log(data);
+      //console.log(data);
+      console.log("principal peliculas populares")
     });
 
     this.seriesService.getPopular().subscribe((data: any) =>{ //podemos definir una clase serie y poner data: serie
+    // this.seriesService.getLatest().subscribe((data: any) =>{
       this.seriesData = data;
-      console.log(data);
+      //console.log(data);
+      console.log("principal series populares")
     });
   }
 
