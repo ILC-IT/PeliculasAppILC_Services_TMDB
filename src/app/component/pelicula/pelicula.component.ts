@@ -23,14 +23,14 @@ export class PeliculaComponent implements OnInit {
       this.idPelicula = params.id;
       this.titulo = params.titulo;
       this.peliculasService.getPelicula(this.idPelicula).subscribe((data: any) =>{
-        console.log(data);
+        //console.log(data);
         this.pelicula = data;
         this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.pelicula.backdrop_path;
       }), (error: any) =>{
         console.log(error);
       }
       this.peliculasService.getCredits(this.idPelicula).subscribe((data: any) =>{
-        console.log(data); //se puede quitar el pipe del service y hacer data.cast
+        //console.log(data); //se puede quitar el pipe del service y hacer data.cast
         this.credits = data;
       })
     }); 
