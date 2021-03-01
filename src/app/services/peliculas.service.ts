@@ -53,11 +53,16 @@ export class PeliculasService {
     return this.httpClient.get(url);
   }
 
-  getTopRated(){
-    const url = `${this.apiUrl}top_rated?${environment.apiKey}&language=${this.language}`;
-    return this.httpClient.get(url).pipe(map((data:any) =>{
-      return data.results;
-    }));
+  getTopRated(page?){
+    if(page){
+      const url = `${this.apiUrl}top_rated?${environment.apiKey}&language=${this.language}&page=${page}`; 
+      return this.httpClient.get(url).pipe(map((data:any) =>{
+        return data.results; //asi devolvemos la parte cast de data
+      }));    
+    }else{
+      const url = `${this.apiUrl}top_rated?${environment.apiKey}&language=${this.language}`;
+      return this.httpClient.get(url);
+    }
   }
 
   getCredits(id){
@@ -65,5 +70,10 @@ export class PeliculasService {
     return this.httpClient.get(url).pipe(map((data:any) =>{
       return data.cast; //asi devolvemos la parte cast de data
     }));
+  }
+
+  searchMovie(query: string){
+    const url = `https://api.themoviedb.org/3/search/movie?${environment.apiKey}&language=${this.language}&query=${query}`;
+    return this.httpClient.get(url);
   }
 }

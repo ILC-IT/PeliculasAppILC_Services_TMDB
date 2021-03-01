@@ -15,6 +15,8 @@ import { SeriesService } from "./services/series.service";
 import { SerieComponent } from './component/serie/serie.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PuntuacionComponent } from './component/puntuacion/puntuacion.component';
+import { FormsModule } from '@angular/forms';
+import { BuscadorComponent } from './component/buscador/buscador.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { PuntuacionComponent } from './component/puntuacion/puntuacion.component
     SeriesListComponent,
     PeliculaComponent,
     SerieComponent,
-    PuntuacionComponent
+    PuntuacionComponent,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     PeliculasService,

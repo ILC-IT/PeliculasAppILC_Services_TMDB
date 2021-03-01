@@ -11,6 +11,8 @@ export class PeliculasListComponent implements OnInit {
 
   peliculasData: any;
   votos: boolean = false;
+  loading: boolean = true; // para esperar a que los datos esten disponibles y luego se "pintan" en pantalla
+  actualPage: number = 0;
 
   constructor(private router: Router, private peliculasService: PeliculasService) { 
   }
@@ -39,7 +41,9 @@ export class PeliculasListComponent implements OnInit {
 
   ngOnInit() {
     this.peliculasService.getTopRated().subscribe((data: any)=> {
-      this.peliculasData = data;
+      this.peliculasData = data.results;
+      this.actualPage = data.page;
+      this.loading = false;
       //console.log(data)
       console.log("peliculas toprated")
     }), (error: any) =>{
@@ -49,6 +53,13 @@ export class PeliculasListComponent implements OnInit {
 
   sendParams(id, titulo){
     this.router.navigate(['/pelicula'], {queryParams: {'id': id, 'titulo': titulo}});
+  }
+
+  cargaMas(){
+    this.actualPage += 1; 
+    this.peliculasService.getTopRated(this.actualPage).subscribe((data:any)=>{
+      this.peliculasData = this.peliculasData.concat(data);
+    })
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-puntuacion',
@@ -7,11 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PuntuacionComponent implements OnInit {
   @Input() puntuacion: number;
+  @Output() newPuntuacion = new EventEmitter<number>();
+
   constructor() { 
     //console.log(this.puntuacion);
   }
 
   ngOnInit() {
+  }
+
+  sendPuntuacion(value: number){
+    this.newPuntuacion.emit(value);
   }
 
 }

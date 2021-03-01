@@ -1,7 +1,8 @@
-<div class="body">
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<div class="body" *ngIf="!loading">
     <div class="cabecera" [ngStyle]="{'background-image': 'url('+ urlFondo +')', 'background-size': 'cover'}">
         <div class="caratula">
-            <img class="imgCaratula" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{ pelicula.poster_path }}">
+            <img class="imgCaratula" src="{{ urlPoster }}">
         </div>
         <div class="info">
             <h2>{{ pelicula.title }} · {{ pelicula.release_date | date: "yyyy" }}</h2>
@@ -13,7 +14,7 @@
                     {{ pelicula.vote_average }}
                 </mat-chip>
             </mat-chip-list> 
-            <app-puntuacion [puntuacion]="pelicula.vote_average"></app-puntuacion>
+            <app-puntuacion [puntuacion]="pelicula.vote_average" (newPuntuacion)="userPuntuacion($event)"></app-puntuacion>
             <mat-chip-list>
                 Generos:
                 <mat-chip *ngFor="let genero of pelicula.genres">

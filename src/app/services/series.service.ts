@@ -67,13 +67,13 @@ export class SeriesService {
     }));
   }
 
-  getLatest(){
-    const url = `${this.apiUrl}latest?${environment.apiKey}&language=${this.language}`;
-    return this.httpClient.get(url).pipe(map((data:any) =>{
-      let myData = Object.entries(data).map((e) => ( { [e[0]]: e[1] } ));
-      return myData.slice(0, 5);
-    }));
-  }
+  // getLatest(){
+  //   const url = `${this.apiUrl}latest?${environment.apiKey}&language=${this.language}`;
+  //   return this.httpClient.get(url).pipe(map((data:any) =>{
+  //     let myData = Object.entries(data).map((e) => ( { [e[0]]: e[1] } ));
+  //     return myData.slice(0, 5);
+  //   }));
+  // }
 
   getTemporada(id, temporada){
     const url = `${this.apiUrl}${id}/season/${temporada}?${environment.apiKey}&language=${this.language}`;

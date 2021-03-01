@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from "@angular/router";
 import { PeliculasService } from "../../services/peliculas.service";
 
 @Component({
@@ -12,9 +13,11 @@ export class PeliculaComponent implements OnInit {
   titulo: string = '';
   pelicula: any = {};
   urlFondo: string = '';
+  urlPoster: string = '';
   credits: any = {};
+  loading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private router: Router, private peliculasService: PeliculasService) { }
+  constructor(private route: ActivatedRoute, private peliculasService: PeliculasService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     // this.route.snapshot.paramMap.get('id');
@@ -26,13 +29,22 @@ export class PeliculaComponent implements OnInit {
         //console.log(data);
         this.pelicula = data;
         this.urlFondo = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + this.pelicula.backdrop_path;
+        this.urlPoster = "https://image.tmdb.org/t/p/w220_and_h330_face" + this.pelicula.poster_path;
       }), (error: any) =>{
         console.log(error);
       }
       this.peliculasService.getCredits(this.idPelicula).subscribe((data: any) =>{
         //console.log(data); //se puede quitar el pipe del service y hacer data.cast
         this.credits = data;
+        this.loading = false;
       })
     }); 
+  }
+
+  userPuntuacion(event){
+    console.log(event)
+    this.snackBar.open('Puntuación del usuario: ' + event,'close', {
+      duration: 3000,
+    });
   }
 }
