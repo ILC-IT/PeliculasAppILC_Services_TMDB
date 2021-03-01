@@ -22,11 +22,11 @@ export class PrincipalComponent implements OnInit {
       console.log("principal peliculas populares")
     });
 
-    this.seriesService.getPopular().subscribe((data: any) =>{ //podemos definir una clase serie y poner data: serie
+    this.seriesService.getTopRated().subscribe((data: any) =>{ //podemos definir una clase serie y poner data: serie
     // this.seriesService.getLatest().subscribe((data: any) =>{
       this.seriesData = data;
       //console.log(data);
-      console.log("principal series populares")
+      console.log("principal series top rated")
     });
   }
 

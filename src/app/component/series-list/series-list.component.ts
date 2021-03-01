@@ -10,6 +10,8 @@ import { SeriesService } from "../../services/series.service";
 export class SeriesListComponent implements OnInit {
 
   seriesData: any;
+  loading: boolean = true;
+  actualPage: number = 0;
 
   constructor(private router: Router, private seriesService: SeriesService) {
    }
@@ -36,7 +38,9 @@ export class SeriesListComponent implements OnInit {
 
   ngOnInit() {
     this.seriesService.getPopular().subscribe((data: any)=> {
-      this.seriesData = data;
+      this.seriesData = data.results;
+      this.actualPage = data.page;
+      this.loading = false;
       //console.log(data)
       console.log("series populares")
     }), (error: any) =>{
@@ -46,6 +50,13 @@ export class SeriesListComponent implements OnInit {
 
   sendParams(id, titulo){
     this.router.navigate(['/serie'], {queryParams: {'id': id, 'titulo': titulo}});
+  }
+
+  cargaMas(){
+    this.actualPage += 1; 
+    this.seriesService.getPopular(this.actualPage).subscribe((data:any)=>{
+      this.seriesData = this.seriesData.concat(data);
+    })
   }
 
 }

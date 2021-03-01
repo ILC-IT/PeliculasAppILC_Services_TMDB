@@ -42,7 +42,7 @@ export class PeliculaComponent implements OnInit {
   }
 
   userPuntuacion(event){
-    console.log(event)
+    // console.log(event)
     this.snackBar.open('Puntuación del usuario: ' + event,'close', {
       duration: 3000,
     });

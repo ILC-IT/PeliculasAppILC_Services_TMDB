@@ -14,11 +14,16 @@ export class SeriesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPopular(){
-    const url = `${this.apiUrl}popular?${environment.apiKey}&language=${this.language}`;
-    return this.httpClient.get(url).pipe(map((data:any) =>{
-      return data.results.slice(0, 5);
-    })); 
+  getPopular(page?){
+    if(page){
+      const url = `${this.apiUrl}popular?${environment.apiKey}&language=${this.language}&page=${page}`;
+      return this.httpClient.get(url).pipe(map((data:any) =>{
+        return data.results; //.slice(0, 5);
+      })); 
+    }else{
+      const url = `${this.apiUrl}popular?${environment.apiKey}&language=${this.language}`;
+      return this.httpClient.get(url);
+    }
   }
 
   private sortJSON(data, key, orden) {
@@ -56,7 +61,7 @@ export class SeriesService {
   getTopRated(){
     const url = `${this.apiUrl}top_rated?${environment.apiKey}&language=${this.language}`;
     return this.httpClient.get(url).pipe(map((data:any) =>{
-      return data.results;
+      return data.results.slice(0, 5);
     }));
   }
 
@@ -77,6 +82,11 @@ export class SeriesService {
 
   getTemporada(id, temporada){
     const url = `${this.apiUrl}${id}/season/${temporada}?${environment.apiKey}&language=${this.language}`;
+    return this.httpClient.get(url);
+  }
+
+  searchSerie(query: string){
+    const url = `https://api.themoviedb.org/3/search/tv?${environment.apiKey}&language=${this.language}&query=${query}`;
     return this.httpClient.get(url);
   }
 }

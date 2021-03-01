@@ -1,5 +1,5 @@
 <div class='principal'>
-    <h2>Películas recientes</h2>
+    <h2>Películas populares</h2>
     <mat-progress-bar mode="indeterminate" *ngIf="!peliculasData"></mat-progress-bar>
     <div class="peliculas" *ngIf="peliculasData">
             <div class="titulos" *ngFor="let peliculas of peliculasData">
@@ -10,7 +10,7 @@
             </div>
         <!-- </button> -->
     </div>
-    <h2>Series recientes</h2>
+    <h2>Series top rated</h2>
     <mat-progress-bar mode="indeterminate" *ngIf="!seriesData"></mat-progress-bar>
     <div class="series" *ngIf="seriesData">
         <div class="titulos2" *ngFor="let series of seriesData">
