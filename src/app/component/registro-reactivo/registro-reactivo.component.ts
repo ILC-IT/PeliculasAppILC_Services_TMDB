@@ -45,19 +45,22 @@ export class RegistroReactivoComponent implements OnInit {
   }
 
   resetForm(){
-    //this.formularioRegistro.reset();
-    this.formularioRegistro.setValue({
-      nombree:'',
-      apellidoss:'',
-      emaill:'',
-      telefonoo:'',
-      ciudadd:'',
-      paiss:'',
-      nacimiento:'',
-      genero:''
+    this.formularioRegistro.reset();
+    // this.formularioRegistro.setValue({
+    //   nombree:'',
+    //   apellidoss:'',
+    //   emaill:'',
+    //   telefonoo:'',
+    //   ciudadd:'',
+    //   paiss:'',
+    //   nacimiento:'',
+    //   genero:''
+    // });
+    // console.log(this.formularioRegistro);
+    // this.formularioRegistro.markAsUntouched();
+    Object.keys(this.formularioRegistro.controls).forEach(key => {
+      this.formularioRegistro.controls[key].setErrors(null);
     });
-    console.log(this.formularioRegistro);
-    this.formularioRegistro.markAsUntouched();
   }
 
 }

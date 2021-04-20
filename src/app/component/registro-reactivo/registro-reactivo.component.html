@@ -71,6 +71,7 @@
             <mat-radio-button value="M">Masculino </mat-radio-button>
             <mat-radio-button value="F">Femenino</mat-radio-button>
         </mat-radio-group>
+        <mat-error *ngIf="formularioRegistro.controls['genero'].hasError('required')">Selecciona una opcion</mat-error>
 
         <button mat-raised-button color="primary" type="submit">Registrar</button>
         <button mat-raised-button color="secondary" (click)="resetForm()">Limpiar formulario</button>
