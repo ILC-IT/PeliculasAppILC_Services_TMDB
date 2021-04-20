@@ -6,6 +6,8 @@ import { PeliculasListComponent } from './component/peliculas-list/peliculas-lis
 import { PrincipalComponent } from './component/principal/principal.component';
 import { SeriesListComponent } from './component/series-list/series-list.component';
 import { BuscadorComponent } from './component/buscador/buscador.component';
+import { RegistroTemplateComponent } from './component/registro-template/registro-template.component';
+import { RegistroReactivoComponent } from './component/registro-reactivo/registro-reactivo.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent}, //pagina principal localhost:4200
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'pelicula', component: PeliculaComponent},
   {path: 'serie', component: SerieComponent},
   {path: 'buscar/:query', component: BuscadorComponent},
+  {path: 'registro', component: RegistroTemplateComponent},
+  {path: 'registroreactivo', component: RegistroReactivoComponent},
   {path:'**', pathMatch: 'full', redirectTo:''}
 ];
 

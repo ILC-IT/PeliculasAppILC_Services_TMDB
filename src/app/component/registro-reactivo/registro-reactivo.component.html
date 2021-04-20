@@ -1,0 +1,78 @@
+<div class="body">
+    <h1>Formulario Reactivo</h1>
+    <form [formGroup]="formularioRegistro" (ngSubmit)="sendForm()"> 
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" 
+            placeholder="Nombre"
+            formControlName="nombree" matInput>
+            <mat-error>El campo nombre no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Apellidos</mat-label>
+            <input type="text" 
+            placeholder="Apellidos"
+            formControlName="apellidoss" matInput>
+            <mat-error>El campo apellidos no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" 
+            placeholder="ex. a@aaa.com"
+            formControlName="emaill" matInput>
+            <mat-error>El campo email no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input type="text" 
+            placeholder="telefono"
+            formControlName="telefonoo" matInput>
+            <mat-error>El campo telefono no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ciudad</mat-label>
+            <mat-select formControlName="ciudadd">
+              <!-- <mat-option value="ponferrada">Ponferrada</mat-option>
+              <mat-option value="Leon">Leon</mat-option>
+              <mat-option value="Astorga">Astorga</mat-option>
+              <mat-option value="Bembibre">Bembibre</mat-option> -->
+              <mat-option *ngFor="let ciudad of ciudades" value="{{ ciudad }}">
+                  {{ ciudad }}
+              </mat-option>
+            </mat-select>
+            <mat-error>El campo ciudad no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Pais</mat-label>
+            <mat-select formControlName="paiss">
+              <mat-option *ngFor="let pais of paises" [value]="pais.nombre">
+                  {{ pais.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error>El campo pais no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="nacimiento" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>El campo fecha no es valido</mat-error>
+        </mat-form-field>
+
+        <mat-radio-group formControlName="genero" aria-label="Selecciona una opcion">
+            <mat-label>Genero: </mat-label>
+            <mat-radio-button value="M">Masculino </mat-radio-button>
+            <mat-radio-button value="F">Femenino</mat-radio-button>
+        </mat-radio-group>
+
+        <button mat-raised-button color="primary" type="submit">Registrar</button>
+        <button mat-raised-button color="secondary" (click)="resetForm()">Limpiar formulario</button>
+    </form>
+</div>
