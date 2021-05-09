@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BuscadorComponent } from './component/buscador/buscador.component';
 import { RegistroTemplateComponent } from './component/registro-template/registro-template.component';
 import { RegistroReactivoComponent } from './component/registro-reactivo/registro-reactivo.component';
+import { RegistroComfirmarComponent } from './component/registro-comfirmar/registro-comfirmar.component';
+import { RegistrarService } from "./services/registrar.service"
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { RegistroReactivoComponent } from './component/registro-reactivo/registr
     PuntuacionComponent,
     BuscadorComponent,
     RegistroTemplateComponent,
-    RegistroReactivoComponent
+    RegistroReactivoComponent,
+    RegistroComfirmarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { RegistroReactivoComponent } from './component/registro-reactivo/registr
   ],
   providers: [
     PeliculasService,
-    SeriesService
+    SeriesService,
+    RegistrarService
   ],
   bootstrap: [AppComponent]
 })

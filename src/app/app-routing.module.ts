@@ -8,6 +8,7 @@ import { SeriesListComponent } from './component/series-list/series-list.compone
 import { BuscadorComponent } from './component/buscador/buscador.component';
 import { RegistroTemplateComponent } from './component/registro-template/registro-template.component';
 import { RegistroReactivoComponent } from './component/registro-reactivo/registro-reactivo.component';
+import { RegistroComfirmarComponent } from './component/registro-comfirmar/registro-comfirmar.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent}, //pagina principal localhost:4200
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'buscar/:query', component: BuscadorComponent},
   {path: 'registro', component: RegistroTemplateComponent},
   {path: 'registroreactivo', component: RegistroReactivoComponent},
+  {path: 'registroconfirmar', component: RegistroComfirmarComponent},
   {path:'**', pathMatch: 'full', redirectTo:''}
 ];
 
