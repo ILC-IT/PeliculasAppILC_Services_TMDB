@@ -9,6 +9,7 @@ import { BuscadorComponent } from './component/buscador/buscador.component';
 import { RegistroTemplateComponent } from './component/registro-template/registro-template.component';
 import { RegistroReactivoComponent } from './component/registro-reactivo/registro-reactivo.component';
 import { RegistroComfirmarComponent } from './component/registro-comfirmar/registro-comfirmar.component';
+import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent}, //pagina principal localhost:4200
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'registro', component: RegistroTemplateComponent},
   {path: 'registroreactivo', component: RegistroReactivoComponent},
   {path: 'registroconfirmar', component: RegistroComfirmarComponent},
+  {path: 'login', component: LoginComponent},
   {path:'**', pathMatch: 'full', redirectTo:''}
 ];
 

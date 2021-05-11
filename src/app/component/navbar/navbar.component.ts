@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from "../../services/login.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,16 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   value: string = '';
+  user: any = {
+    name: '',
+    email: '',
+    sessionId: ''
+  };
   
-  constructor(private route: Router) { }
+  constructor(private route: Router,  private loginService: LoginService) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("userData")); //para convertir strgin a objeto usar JSON.parse(string)
   }
 
   buscar() {
@@ -20,6 +27,10 @@ export class NavbarComponent implements OnInit {
       return;
     }
     this.route.navigate(['/buscar', this.value]);
+  }
+
+  logOut(){
+    this.loginService.logout();
   }
 
 }

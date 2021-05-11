@@ -20,7 +20,9 @@ import { BuscadorComponent } from './component/buscador/buscador.component';
 import { RegistroTemplateComponent } from './component/registro-template/registro-template.component';
 import { RegistroReactivoComponent } from './component/registro-reactivo/registro-reactivo.component';
 import { RegistroComfirmarComponent } from './component/registro-comfirmar/registro-comfirmar.component';
-import { RegistrarService } from "./services/registrar.service"
+import { RegistrarService } from "./services/registrar.service";
+import { LoginComponent } from './component/login/login.component'
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { RegistrarService } from "./services/registrar.service"
     BuscadorComponent,
     RegistroTemplateComponent,
     RegistroReactivoComponent,
-    RegistroComfirmarComponent
+    RegistroComfirmarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { RegistrarService } from "./services/registrar.service"
   providers: [
     PeliculasService,
     SeriesService,
-    RegistrarService
+    RegistrarService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
