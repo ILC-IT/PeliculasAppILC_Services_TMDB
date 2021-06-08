@@ -7,7 +7,7 @@
             <button mat-raised-button color="primary" routerLink="/peliculasList" routerLinkActive="mat-accent">Películas</button>
             <button mat-raised-button color="primary" routerLink="/seriesList" routerLinkActive="mat-accent">Series</button>
         </div>
-        <div>
+        <div *ngIf="isLogged">
             Bienvenido: {{ user.name }}
         </div>
         <div class="search">
@@ -20,7 +20,7 @@
             <button mat-raised-button color="primary" (click)="buscar()">Buscar</button>
             <button mat-raised-button color="secondary" routerLink="/registro" routerLinkActive="mat-accent">Registro</button>
             <button mat-raised-button color="secondary" routerLink="/registroreactivo" routerLinkActive="mat-accent">RegistroR</button>
-            <button mat-raised-button color="secondary" routerLink="/login" routerLinkActive="mat-accent">Login</button>
-            <button mat-raised-button color="secondary" (click)="logOut()">Logout</button>
+            <button mat-raised-button color="secondary" routerLink="/login" routerLinkActive="mat-accent" *ngIf="!isLogged">Login</button>
+            <button mat-raised-button color="secondary" (click)="logOut()" *ngIf="isLogged">Logout</button>
         </div>
     </mat-toolbar-row>

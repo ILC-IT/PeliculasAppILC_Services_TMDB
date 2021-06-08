@@ -13,13 +13,29 @@ export class NavbarComponent implements OnInit {
   user: any = {
     name: '',
     email: '',
-    sessionId: ''
+    session_Id: ''
   };
-  
+  isLogged = false;
   constructor(private route: Router,  private loginService: LoginService) { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem("userData")); //para convertir strgin a objeto usar JSON.parse(string)
+    // //Hace falta hacer que si no hay datos no de error
+    // if (localStorage.getItem("userData") !== null) {
+    //   this.user = JSON.parse(localStorage.getItem("userData")); //para convertir string a objeto usar JSON.parse(string)
+    // }
+    if(localStorage.getItem('session_Id')){ //igual estos datos expiran en un tiempo
+      this.loginService.logged.next(true);
+      this.isLogged = true;
+      this.user = JSON.parse(localStorage.getItem("userData"));
+    }
+    this.loginService.logged.subscribe(res => {
+      if(res){
+        this.user = JSON.parse(localStorage.getItem("userData"));
+        this.isLogged = true;
+      } else{
+        this.isLogged = false;
+      }
+    });
   }
 
   buscar() {
