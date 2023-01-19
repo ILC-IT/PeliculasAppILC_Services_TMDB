@@ -10,7 +10,7 @@ export class PaisesService {
   constructor( private httpClient: HttpClient) { }
 
   getPaises(){
-    return this.httpClient.get("https://restcountries.eu/rest/v2/regionalbloc/eu").pipe(map( (res: any[]) => {
+    return this.httpClient.get("https://restcountries.com/v2/regionalbloc/eu").pipe(map( (res: any[]) => {
       return res.map(pais => ({ nombre: pais.name, capital: pais.capital }));
     }));
   }
